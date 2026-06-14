@@ -37,6 +37,7 @@
             align-items: center;
             overflow-x: hidden;
             position: relative;
+            padding: 10px; /* ایجاد پدینگ ملایم برای مانیتورهای کوچک و موبایل */
         }
 
         /* پس‌زمینه متحرک مینیاتوری سینما و انیمه */
@@ -58,9 +59,9 @@
             100% { transform: translateY(-50%); }
         }
 
-        /* تصویر بنر بالای صفحه */
+        /* تصویر بنر بالای صفحه - کاملا منعطف و ریسپانسیو */
         .premium-top-banner {
-            width: 100%;
+            width: 92%;
             max-width: 460px;
             height: auto;
             margin-top: 25px;
@@ -69,26 +70,28 @@
             z-index: 10;
         }
 
-        /* بخش مرکزی محتوا */
+        /* بخش مرکزی محتوا - منعطف بر اساس اندازه دستگاه */
         .content-theater {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 5vh; /* استفاده از واحد داینامیک ارتفاع */
             width: 100%;
+            max-width: 500px;
             z-index: 10;
         }
 
-        /* متن وضعیت نئونی */
+        /* متن وضعیت نئونی - ریسپانسیو شده برای موبایل */
         .neon-status-text {
-            font-size: 1.65rem;
+            font-size: clamp(1.3rem, 4vw, 1.65rem); /* تغییر سایز خودکار بین موبایل و دسکتاپ */
             font-weight: 900;
             letter-spacing: 3px;
             color: var(--neon-blue);
             text-shadow: 0 0 10px var(--neon-glow-blue), 0 0 25px var(--neon-glow-blue);
             margin-bottom: 30px;
             text-transform: uppercase;
+            text-align: center;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -140,13 +143,16 @@
             overflow: hidden;
         }
 
-        /* دکمه با طراحی جدید و فوق نئونی مخصوص رسانه انیمه */
+        /* دکمه با طراحی جدید - کامپکت و بهینه‌سازی شده برای کلیک در موبایل */
         .ultra-neon-btn {
             background: var(--btn-dark-init);
             color: var(--text-dim);
             border: 1px solid rgba(255, 255, 255, 0.01);
-            padding: 22px 55px;
-            font-size: 1.25rem;
+            padding: 18px 0; /* پدینگ خطی ثابت و عرض درصدی برای عدم به‌هم‌ریختگی */
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            font-size: clamp(1.05rem, 3.5vw, 1.25rem); /* هماهنگی خودکار اندازه متن دکمه */
             font-weight: 800;
             border-radius: 50px;
             cursor: not-allowed;
@@ -156,6 +162,7 @@
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             letter-spacing: 0.5px;
             box-shadow: inset 0 4px 8px rgba(0,0,0,0.9);
+            display: inline-block;
         }
 
         /* فعال شدن دکمه با گرادینت زنده و پالس نوری خیره‌کننده انیمه */
@@ -182,7 +189,7 @@
         }
 
         .ultra-neon-btn.unlocked:hover {
-            transform: translateY(-6px) scale(1.03);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 25px 55px rgba(255, 107, 0, 0.7), 0 0 45px rgba(255, 0, 85, 0.6);
         }
 
@@ -190,15 +197,22 @@
             transform: translateY(-2px) scale(1);
         }
 
-        /* کانتینر خالص تبلیغات نیتیو بنر در زیر دکمه با فاصله استاندارد */
+        /* کانتینر تبلیغات نیتیو بنر - ریسپانسیو و منعطف */
         .native-ad-space {
             width: 100%;
+            max-width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px; /* فاصله مناسب از زیر دکمه */
-            margin-bottom: 30px;
+            margin-top: 6vh; /* استفاده از واحد داینامیک برای تنظیم فاصله دقیق زیر دکمه */
+            margin-bottom: 20px;
             z-index: 10;
+            overflow: hidden; /* جلوگیری از اسکرول خوردن احتمالی در موبایل */
+        }
+
+        /* مطمئن شدن از اینکه خود باکس تبلیغاتی هم از کادر بیرون نمی‌زند */
+        .native-ad-space > div {
+            max-width: 100% !important;
         }
     </style>
 </head>

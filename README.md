@@ -228,7 +228,7 @@
             <div class="cinema-reel-loader"></div>
         </div>
 
-        <a href="https://www.effectivecpmnetwork.com/t6555sr5ph?key=bf1001c9598de0606ec941ab9e3698d4" class="ultra-neon-btn" id="actionTrigger">
+        <a href="https://ava-tv.github.io/Main-Page/" class="ultra-neon-btn" id="actionTrigger">
             AVA Free Movies & Animes
         </a>
         

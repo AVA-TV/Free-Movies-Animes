@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVA Movies & Animes - Secure Portal</title>
     <style>
-        /* پلت رنگی تاریک با گرادینت انیمه‌ای و نئونی جدید */
         :root {
             --bg-color: #060810;
             --neon-blue: #00f0ff;
             --neon-glow-blue: rgba(0, 240, 255, 0.35);
             --neon-green: #00ffaa;
             --neon-glow-green: rgba(0, 255, 170, 0.4);
-            
-            /* گرادینت جدید و اختصاصی سبک انیمه/فیلم (ترکیب نارنجی اتمی، ارغوانی و قرمز آتشین) */
             --anime-gradient: linear-gradient(135deg, #ff6b00, #ff0055, #7000ff);
-            --anime-glow: rgba(255, 107, 0, 0.5);
-            
             --btn-dark-init: #0f121d;
             --text-dim: #435169;
         }
@@ -37,17 +32,14 @@
             align-items: center;
             overflow-x: hidden;
             position: relative;
-            padding: 10px; /* ایجاد پدینگ ملایم برای مانیتورهای کوچک و موبایل */
+            padding: 15px 10px;
         }
 
         /* پس‌زمینه متحرک مینیاتوری سینما و انیمه */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 200%;
+            top: 0; left: 0; width: 100%; height: 200%;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><text x="15" y="30" fill="rgba(0, 240, 255, 0.04)" font-size="18">🎥</text><text x="85" y="25" fill="rgba(0, 255, 170, 0.03)" font-size="16">🎬</text><text x="50" y="65" fill="rgba(0, 240, 255, 0.03)" font-size="15">📺</text><text x="110" y="70" fill="rgba(0, 255, 170, 0.04)" font-size="17">🎞️</text><text x="20" y="105" fill="rgba(0, 240, 255, 0.03)" font-size="16">🎙️</text><text x="75" y="115" fill="rgba(0, 255, 170, 0.05)" font-size="18">🍿</text><text x="115" y="120" fill="rgba(0, 240, 255, 0.03)" font-size="15">🕶️</text><text x="10" y="70" fill="rgba(0, 255, 170, 0.02)" font-size="14">🦊</text><text x="80" y="75" fill="rgba(255, 255, 255, 0.03)" font-size="10">✨</text></svg>');
             background-repeat: repeat;
             z-index: -1;
@@ -59,32 +51,45 @@
             100% { transform: translateY(-50%); }
         }
 
-        /* تصویر بنر بالای صفحه - کاملا منعطف و ریسپانسیو */
+        /* کانتینرهای نگهدارنده تبلیغات هوشمند استاندارد بنری */
+        .ad-banner-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50px;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .ad-top { margin-bottom: 15px; }
+        .ad-bottom { margin-top: 35px; margin-bottom: 15px; }
+
+        /* تصویر بنر بالای صفحه */
         .premium-top-banner {
             width: 92%;
             max-width: 460px;
             height: auto;
-            margin-top: 25px;
             border-radius: 14px;
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
             z-index: 10;
         }
 
-        /* بخش مرکزی محتوا - منعطف بر اساس اندازه دستگاه */
+        /* بخش مرکزی محتوا */
         .content-theater {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 5vh; /* استفاده از واحد داینامیک ارتفاع */
+            margin-top: 4vh;
             width: 100%;
             max-width: 500px;
             z-index: 10;
         }
 
-        /* متن وضعیت نئونی - ریسپانسیو شده برای موبایل */
+        /* متن وضعیت نئونی */
         .neon-status-text {
-            font-size: clamp(1.3rem, 4vw, 1.65rem); /* تغییر سایز خودکار بین موبایل و دسکتاپ */
+            font-size: clamp(1.3rem, 4vw, 1.65rem);
             font-weight: 900;
             letter-spacing: 3px;
             color: var(--neon-blue);
@@ -143,16 +148,16 @@
             overflow: hidden;
         }
 
-        /* دکمه با طراحی جدید - کامپکت و بهینه‌سازی شده برای کلیک در موبایل */
+        /* دکمه با طراحی نئون و انیمه */
         .ultra-neon-btn {
             background: var(--btn-dark-init);
             color: var(--text-dim);
             border: 1px solid rgba(255, 255, 255, 0.01);
-            padding: 18px 0; /* پدینگ خطی ثابت و عرض درصدی برای عدم به‌هم‌ریختگی */
+            padding: 18px 0;
             width: 90%;
             max-width: 420px;
             text-align: center;
-            font-size: clamp(1.05rem, 3.5vw, 1.25rem); /* هماهنگی خودکار اندازه متن دکمه */
+            font-size: clamp(1.05rem, 3.5vw, 1.25rem);
             font-weight: 800;
             border-radius: 50px;
             cursor: not-allowed;
@@ -165,7 +170,6 @@
             display: inline-block;
         }
 
-        /* فعال شدن دکمه با گرادینت زنده و پالس نوری خیره‌کننده انیمه */
         .ultra-neon-btn.unlocked {
             background: var(--anime-gradient);
             background-size: 200% auto;
@@ -196,27 +200,11 @@
         .ultra-neon-btn.unlocked:active {
             transform: translateY(-2px) scale(1);
         }
-
-        /* کانتینر تبلیغات نیتیو بنر - ریسپانسیو و منعطف */
-        .native-ad-space {
-            width: 100%;
-            max-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 6vh; /* استفاده از واحد داینامیک برای تنظیم فاصله دقیق زیر دکمه */
-            margin-bottom: 20px;
-            z-index: 10;
-            overflow: hidden; /* جلوگیری از اسکرول خوردن احتمالی در موبایل */
-        }
-
-        /* مطمئن شدن از اینکه خود باکس تبلیغاتی هم از کادر بیرون نمی‌زند */
-        .native-ad-space > div {
-            max-width: 100% !important;
-        }
     </style>
 </head>
 <body>
+
+    <div class="ad-banner-container ad-top" id="top-ad-placement"></div>
 
     <img src="https://trilliardaire.sirv.com/6156717967236862865_120.jpg" alt="AVA Streaming Content" class="premium-top-banner">
 
@@ -228,34 +216,77 @@
             <div class="cinema-reel-loader"></div>
         </div>
 
-        <a href="https://ava-tv.github.io/Main-Page/" class="ultra-neon-btn" id="actionTrigger">
+        <a href="https://ava-tv.github.io/AVA-Movies/" class="ultra-neon-btn" id="actionTrigger">
             AVA Free Movies & Animes
         </a>
         
     </div>
 
-    <div class="native-ad-space">
-        <script async="async" data-cfasync="false" src="https://pl29741961.effectivecpmnetwork.com/46fa53bab184d6979bf4dbeee413d25f/invoke.js"></script>
-        <div id="container-46fa53bab184d6979bf4dbeee413d25f"></div>
-    </div>
+    <div class="ad-banner-container ad-bottom" id="bottom-ad-placement"></div>
 
     <script>
+        // اسکریپت رندر هوشمند تبلیغات بر اساس سایز نمایشگر کاربر
+        function injectResponsiveAds() {
+            const width = window.innerWidth;
+            let topKey, topWidth, topHeight;
+            let bottomKey, bottomWidth, bottomHeight;
+
+            // ساختار شرطی تفکیک سایزها
+            if (width < 480) {
+                // سایز کوچک برای موبایل
+                topKey = '5cdf44154051bf61abc9ee4dabf4b1ec'; topWidth = 320; topHeight = 50;
+                bottomKey = '9d8268dabb751ffd71eeba8c9d989f24'; bottomWidth = 320; bottomHeight = 50;
+            } else if (width >= 480 && width <= 768) {
+                // سایز متوسط برای تبلت‌ها
+                topKey = '5cdb5f894ebf6e8e7ecb294029870156'; topWidth = 468; topHeight = 60;
+                bottomKey = 'a2156a54703543f9e31ca87830b1680e'; bottomWidth = 468; bottomHeight = 60;
+            } else {
+                // سایز بزرگ برای سیستم و دسکتاپ
+                topKey = '66f027c2a4a59d6c29440bb4a48c28e6'; topWidth = 728; topHeight = 90;
+                bottomKey = '57b1b8ddcd9a28d2d84e6d4f810c13bc'; bottomWidth = 728; bottomHeight = 90;
+            }
+
+            // ۱. تزریق اسکریپت تبلیغاتی بالای صفحه
+            const topPlacement = document.getElementById('top-ad-placement');
+            if (topPlacement) {
+                const scriptConf = document.createElement('script');
+                scriptConf.innerHTML = `atOptions = { 'key' : '${topKey}', 'format' : 'iframe', 'height' : ${topHeight}, 'width' : ${topWidth}, 'params' : {} };`;
+                const scriptSrc = document.createElement('script');
+                scriptSrc.src = `https://speedingdeadlyplays.com/${topKey}/invoke.js`;
+                topPlacement.appendChild(scriptConf);
+                topPlacement.appendChild(scriptSrc);
+            }
+
+            // ۲. تزریق اسکریپت تبلیغاتی پایین صفحه
+            const bottomPlacement = document.getElementById('bottom-ad-placement');
+            if (bottomPlacement) {
+                const scriptConfBtn = document.createElement('script');
+                scriptConfBtn.innerHTML = `atOptions = { 'key' : '${bottomKey}', 'format' : 'iframe', 'height' : ${bottomHeight}, 'width' : ${bottomWidth}, 'params' : {} };`;
+                const scriptSrcBtn = document.createElement('script');
+                scriptSrcBtn.src = `https://speedingdeadlyplays.com/${bottomKey}/invoke.js`;
+                bottomPlacement.appendChild(scriptConfBtn);
+                bottomPlacement.appendChild(scriptSrcBtn);
+            }
+        }
+
+        // اجرای فرآیند تزریق لود تبلیغات درست به محض باز شدن DOM برای هدر نرفتن زمان طلایی لود
+        injectResponsiveAds();
+
         document.addEventListener("DOMContentLoaded", function() {
-            // غیب شدن لودینگ و تغییر ظاهر دکمه پس از ۲ ثانیه کامل
+            // انیمیشن ۲ ثانیه‌ای برای غیب شدن لودینگ و فعال‌سازی دکمه
             setTimeout(function() {
                 
-                // ۱. پنهان کردن لودینگ آپارات
                 const loader = document.getElementById('theaterLoader');
-                loader.classList.add('wipe-out');
+                if (loader) loader.classList.add('wipe-out');
 
-                // ۲. تغییر متن به وضعیت امن
                 const status = document.getElementById('statusPanel');
-                status.classList.add('secured');
-                status.innerText = 'Site is protected';
+                if (status) {
+                    status.classList.add('secured');
+                    status.innerText = 'Site is protected';
+                }
 
-                // ۳. روشن شدن موتور گرادینت نئونی جدید دکمه و باز شدن لینک کلیک
                 const btn = document.getElementById('actionTrigger');
-                btn.classList.add('unlocked');
+                if (btn) btn.classList.add('unlocked');
 
             }, 2000);
         });

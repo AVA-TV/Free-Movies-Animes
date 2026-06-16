@@ -32,7 +32,8 @@
             align-items: center;
             overflow-x: hidden;
             position: relative;
-            padding: 15px 10px;
+            /* ایجاد پدینگ‌های بالا و پایین برای اینکه محتوا زیر بنرهای چسبان پنهان نشود */
+            padding: 110px 10px 110px 10px;
         }
 
         /* پس‌زمینه متحرک مینیاتوری سینما و انیمه */
@@ -51,19 +52,55 @@
             100% { transform: translateY(-50%); }
         }
 
-        /* کانتینرهای نگهدارنده تبلیغات هوشمند استاندارد بنری */
-        .ad-banner-container {
+        /* --- استایل چسباندن بنرها به سقف و کف صفحه --- */
+        .sticky-ad-wrapper {
+            position: fixed;
+            left: 0;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 50px;
-            z-index: 10;
-            overflow: hidden;
+            z-index: 9999;
+            background: rgba(6, 8, 16, 0.75);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
+
+        .fixed-top-ad {
+            top: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .fixed-bottom-ad {
+            bottom: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        /* المان‌های بنر داخلی */
+        .ad-box {
+            display: none; /* در حالت اولیه همه مخفی هستند تا مدیا کوئری سایز درست را فعال کند */
+        }
+
+        /* --- منطق نمایش هوشمند ریسپانسیو بنرها بر اساس رزولوشن --- */
         
-        .ad-top { margin-bottom: 15px; }
-        .ad-bottom { margin-top: 35px; margin-bottom: 15px; }
+        /* ۱. دستگاه‌های کوچک و موبایل (زیر 480 پیکسل) */
+        @media (max-width: 479px) {
+            .ad-box.size-small { display: block !important; }
+        }
+
+        /* ۲. دستگاه‌های متوسط و تبلت (بین 480 تا 768 پیکسل) */
+        @media (min-width: 480px) and (max-width: 768px) {
+            .ad-box.size-medium { display: block !important; }
+        }
+
+        /* ۳. دسکتاپ و مانیتورهای بزرگ (بالای 768 پیکسل) */
+        @media (min-width: 769px) {
+            .ad-box.size-large { display: block !important; }
+        }
 
         /* تصویر بنر بالای صفحه */
         .premium-top-banner {
@@ -204,7 +241,31 @@
 </head>
 <body>
 
-    <div class="ad-banner-container ad-top" id="top-ad-placement"></div>
+    <div class="sticky-ad-wrapper fixed-top-ad">
+        
+        <div class="ad-box size-small">
+            <script>
+                atOptions = { 'key' : '5cdf44154051bf61abc9ee4dabf4b1ec', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script src="https://speedingdeadlyplays.com/5cdf44154051bf61abc9ee4dabf4b1ec/invoke.js"></script>
+        </div>
+
+        <div class="ad-box size-medium">
+            <script>
+                atOptions = { 'key' : '5cdb5f894ebf6e8e7ecb294029870156', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+            </script>
+            <script src="https://speedingdeadlyplays.com/5cdb5f894ebf6e8e7ecb294029870156/invoke.js"></script>
+        </div>
+
+        <div class="ad-box size-large">
+            <script>
+                atOptions = { 'key' : '66f027c2a4a59d6c29440bb4a48c28e6', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+            </script>
+            <script src="https://speedingdeadlyplays.com/66f027c2a4a59d6c29440bb4a48c28e6/invoke.js"></script>
+        </div>
+
+    </div>
+
 
     <img src="https://trilliardaire.sirv.com/6156717967236862865_120.jpg" alt="AVA Streaming Content" class="premium-top-banner">
 
@@ -222,58 +283,36 @@
         
     </div>
 
-    <div class="ad-banner-container ad-bottom" id="bottom-ad-placement"></div>
+
+    <div class="sticky-ad-wrapper fixed-bottom-ad">
+        
+        <div class="ad-box size-small">
+            <script>
+                atOptions = { 'key' : '9d8268dabb751ffd71eeba8c9d989f24', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script src="https://speedingdeadlyplays.com/9d8268dabb751ffd71eeba8c9d989f24/invoke.js"></script>
+        </div>
+
+        <div class="ad-box size-medium">
+            <script>
+                atOptions = { 'key' : 'a2156a54703543f9e31ca87830b1680e', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+            </script>
+            <script src="https://speedingdeadlyplays.com/a2156a54703543f9e31ca87830b1680e/invoke.js"></script>
+        </div>
+
+        <div class="ad-box size-large">
+            <script>
+                atOptions = { 'key' : '57b1b8ddcd9a28d2d84e6d4f810c13bc', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+            </script>
+            <script src="https://speedingdeadlyplays.com/57b1b8ddcd9a28d2d84e6d4f810c13bc/invoke.js"></script>
+        </div>
+
+    </div>
+
 
     <script>
-        // اسکریپت رندر هوشمند تبلیغات بر اساس سایز نمایشگر کاربر
-        function injectResponsiveAds() {
-            const width = window.innerWidth;
-            let topKey, topWidth, topHeight;
-            let bottomKey, bottomWidth, bottomHeight;
-
-            // ساختار شرطی تفکیک سایزها
-            if (width < 480) {
-                // سایز کوچک برای موبایل
-                topKey = '5cdf44154051bf61abc9ee4dabf4b1ec'; topWidth = 320; topHeight = 50;
-                bottomKey = '9d8268dabb751ffd71eeba8c9d989f24'; bottomWidth = 320; bottomHeight = 50;
-            } else if (width >= 480 && width <= 768) {
-                // سایز متوسط برای تبلت‌ها
-                topKey = '5cdb5f894ebf6e8e7ecb294029870156'; topWidth = 468; topHeight = 60;
-                bottomKey = 'a2156a54703543f9e31ca87830b1680e'; bottomWidth = 468; bottomHeight = 60;
-            } else {
-                // سایز بزرگ برای سیستم و دسکتاپ
-                topKey = '66f027c2a4a59d6c29440bb4a48c28e6'; topWidth = 728; topHeight = 90;
-                bottomKey = '57b1b8ddcd9a28d2d84e6d4f810c13bc'; bottomWidth = 728; bottomHeight = 90;
-            }
-
-            // ۱. تزریق اسکریپت تبلیغاتی بالای صفحه
-            const topPlacement = document.getElementById('top-ad-placement');
-            if (topPlacement) {
-                const scriptConf = document.createElement('script');
-                scriptConf.innerHTML = `atOptions = { 'key' : '${topKey}', 'format' : 'iframe', 'height' : ${topHeight}, 'width' : ${topWidth}, 'params' : {} };`;
-                const scriptSrc = document.createElement('script');
-                scriptSrc.src = `https://speedingdeadlyplays.com/${topKey}/invoke.js`;
-                topPlacement.appendChild(scriptConf);
-                topPlacement.appendChild(scriptSrc);
-            }
-
-            // ۲. تزریق اسکریپت تبلیغاتی پایین صفحه
-            const bottomPlacement = document.getElementById('bottom-ad-placement');
-            if (bottomPlacement) {
-                const scriptConfBtn = document.createElement('script');
-                scriptConfBtn.innerHTML = `atOptions = { 'key' : '${bottomKey}', 'format' : 'iframe', 'height' : ${bottomHeight}, 'width' : ${bottomWidth}, 'params' : {} };`;
-                const scriptSrcBtn = document.createElement('script');
-                scriptSrcBtn.src = `https://speedingdeadlyplays.com/${bottomKey}/invoke.js`;
-                bottomPlacement.appendChild(scriptConfBtn);
-                bottomPlacement.appendChild(scriptSrcBtn);
-            }
-        }
-
-        // اجرای فرآیند تزریق لود تبلیغات درست به محض باز شدن DOM برای هدر نرفتن زمان طلایی لود
-        injectResponsiveAds();
-
         document.addEventListener("DOMContentLoaded", function() {
-            // انیمیشن ۲ ثانیه‌ای برای غیب شدن لودینگ و فعال‌سازی دکمه
+            // زمان‌بندی انیمیشن ۲ ثانیه‌ای لودینگ محافظتی پورتال
             setTimeout(function() {
                 
                 const loader = document.getElementById('theaterLoader');
